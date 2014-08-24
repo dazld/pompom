@@ -2,4 +2,7 @@
 
 var pompom = require('../index');
 
-
+pompom(process.argv.slice(2), 
+        process.cwd(), 
+        process.stdout, 
+        process.stderr);
