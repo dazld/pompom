@@ -1,0 +1,23 @@
+{
+  "name": "pompom",
+  "version": "0.0.1",
+  "description": "Local single page app development server, aiming to be as fast as possible",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "pompom":"./bin/pompom"
+  },
+  "author": "Dan Peddle <dan@flarework.com>",
+  "license": [{
+    "type": "MIT",
+    "url": "http://www.opensource.org/licenses/mit-license.php"
+  }],
+  "dependencies": {
+    "bluebird": "^2.3.1",
+    "chokidar": "^0.8.4",
+    "lodash": "^2.4.1",
+    "minimist": "^1.1.0"
+  }
+}
