@@ -1,6 +1,6 @@
 {
   "name": "pompom",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Local single page app development server, aiming to be as fast as possible",
   "main": "index.js",
   "scripts": {
@@ -9,13 +9,18 @@
   "bin": {
     "pompom": "./bin/pompom"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:dazld/pompom.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dazld/pompom/issues"
+  },
   "author": "Dan Peddle <dan@flarework.com>",
-  "license": [
-    {
-      "type": "MIT",
-      "url": "http://www.opensource.org/licenses/mit-license.php"
-    }
-  ],
+  "license": [{
+    "type": "MIT",
+    "url": "http://www.opensource.org/licenses/mit-license.php"
+  }],
   "dependencies": {
     "bluebird": "^2.3.1",
     "chokidar": "^0.8.4",
