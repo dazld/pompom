@@ -12,6 +12,9 @@ function checkMime(path){
     return mime.lookup(path);
 }
 
+var liveReloadScript = ['<script>',fs.readFileSync(__dirname+'/live/live.js').toString(),'</script>'].join('');
+
+
 // cache up static pages
 var staticPages = (function() {
     var pompomDir = __dirname;
@@ -29,18 +32,7 @@ var staticPages = (function() {
 
 // check if that path actually exists
 // @todo - need to check directories!
-function fileExists(file) {
-    return new Promise(function(resolve, reject) {
-        fs.stat(file, function(err, stat) {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(stat);
-            }
-        });
-    });
-}
-
+var fileExists = Promise.promisify(fs.stat);
 
 // checking html accepts header for json or html
 function acceptsHtml(accepts) {
@@ -66,7 +58,9 @@ module.exports = function run(args, cwd, stdout, stderr) {
     // the index file will probably be changing, so get a fresh
     // one each time
     function getIndex() {
-        return fs.readFileSync(normaliseRequest('/')).toString();
+        var index = fs.readFileSync(normaliseRequest('/')).toString();
+        index = index+liveReloadScript;
+        return index;
     }
 
     var argv = require('minimist')(args);
@@ -81,13 +75,20 @@ module.exports = function run(args, cwd, stdout, stderr) {
     };
 
     var server = http.createServer(function(req, res) {
+
+        // are we getting pinged for a SSE?
+        if (req.url === '/pompom-reload') {
+            res.end('hey');
+            return;
+        };
+
         var normalisedReq = normaliseRequest(req.url);
 
         fileExists(normalisedReq).then(function(stat) {
             var data = fs.readFileSync(normalisedReq).toString();
-            if (!data) {
-                // can we serve the default index?
-                data = acceptsHtml(req.accept) ? 'default' : false;
+            if (data && acceptsHtml(req.headers.accept)) {
+                
+                data = data+liveReloadScript;
             }
             return {
                 content: data
@@ -120,8 +121,7 @@ module.exports = function run(args, cwd, stdout, stderr) {
             res.write(toRespond.payload);
 
             res.end();
-        }).
-        catch (function(err) {
+        }).catch(function(err) {
             console.log(err);
             res.writeHead(500, {
                 'Content-Type': 'text/html'
