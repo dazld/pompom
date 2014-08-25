@@ -17,15 +17,18 @@
     "url": "https://github.com/dazld/pompom/issues"
   },
   "author": "Dan Peddle <dan@flarework.com>",
-  "license": [{
-    "type": "MIT",
-    "url": "http://www.opensource.org/licenses/mit-license.php"
-  }],
+  "license": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
+    }
+  ],
   "dependencies": {
     "bluebird": "^2.3.1",
     "chokidar": "^0.8.4",
     "lodash": "^2.4.1",
     "mime": "^1.2.11",
-    "minimist": "^1.1.0"
+    "minimist": "^1.1.0",
+    "webpack": "^1.3.7"
   }
 }

@@ -13,6 +13,10 @@
         connectionOpen(false);
     };
 
+    source.addEventListener('reload', function(){
+        // source.close();
+        window.location.reload();
+    });
 
     source.onmessage = function(event) {
         // a message without a type was fired
