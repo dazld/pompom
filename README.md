@@ -1,6 +1,7 @@
 # pompom
 
-Fast, cpu-friendly webpack dev server, based on chokidar.
+Fast, cpu-friendly webpack dev server, based on chokidar. Mainly a playground for using the webpack API and server side events. Feel free to play, try it out, fix things, whatever. In its current state, will probably blow up, but give it a go. It's kinda sorta working already™.
+
 No iframes -.-
 
 # installation
@@ -35,6 +36,7 @@ pompom --index=index.html // uses the specifed file for all accepts html request
 
 # todo
 
+- cleanup closed connections (yeah, yeah..)
 - cover more cases than single entry point, single build output
 - allow for when we can't find local webpack or webpack config
 - allow command line overrides
