@@ -1,6 +1,6 @@
 {
   "name": "pompom",
-  "version": "0.0.3-alpha",
+  "version": "0.0.3-alpha2",
   "description": "Local single page app development server, aiming to be as fast as possible",
   "main": "index.js",
   "scripts": {
